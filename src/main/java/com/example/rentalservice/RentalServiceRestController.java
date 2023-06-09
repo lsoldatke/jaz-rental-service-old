@@ -2,6 +2,8 @@ package com.example.rentalservice;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/rentalservice")
 public class RentalServiceRestController {
@@ -13,7 +15,11 @@ public class RentalServiceRestController {
 
     @GetMapping("/getmovie/{id}")
     public Movie getMovie(@PathVariable Long id) {
-        return rentalService.getMovie(id);
+        Movie movie = rentalService.getMovie(id);
+        if (movie == null) {
+            throw new NoSuchElementException("Movie not found");
+        }
+        return movie;
     }
 
     @PutMapping("/returnmovie/{id}")

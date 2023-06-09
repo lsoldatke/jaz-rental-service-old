@@ -13,13 +13,13 @@ public class RentalService {
     }
 
     public Movie getMovie(Long id) {
-        String url = "http://localhost:8080/movieservice/movies/" + String.valueOf(id);
+        String url = "http://localhost:8080/movieservice/movies/" + id;
         ResponseEntity<Movie> response = restTemplate.getForEntity(url, Movie.class);
         return response.getBody();
     }
 
     public Movie returnMovie(Long id) {
-        String url = "http://localhost:8080/movieservice/movies/return/" + String.valueOf(id);
+        String url = "http://localhost:8080/movieservice/movies/return/" + id;
         ResponseEntity<Movie> response = restTemplate.getForEntity(url, Movie.class);
         return response.getBody();
     }
